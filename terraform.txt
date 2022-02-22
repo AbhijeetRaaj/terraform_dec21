@@ -45,7 +45,7 @@ Terraform Provider
 		provider "aws" {
 			region = "ap-south-1"
 		}
-
+		
 		provider "aws" {
 			alias = "region1"
 			region = "us-east-1"
@@ -110,7 +110,36 @@ terraform apply
 	  changes will be applied.
 		
 	To apply changes will out user confirmation 
-		terraform aplly -auto-approve
+		terraform apply -auto-approve
 	
 	To run a perticular terraform script
 		terraform apply <script>.tf <script1>.tf
+		
+	To apply a plan file
+		terraform apply <plan_file>
+		
+terraform validate 
+	- This is to validate the syntax of the terraform scripts in a project.		
+	
+tarrafotm destroy 
+	- This is used to destroy the resources which are manged by this current terraform 
+	  scripts.
+    - Crate a destroy plan 
+		terraform destroy -target <resource_type>.<resource_name>
+		terraform destroy -target aws_instance.ec2_instance2
+		
+Terraform state 
+	- When ever we build or apply the terraform scripts for the first time a file by name 
+	  terraform.tfstate will get generated which contains the all the configuration data 
+	  in JSON format.
+	- When we apply for the second time or more terraform will always compare the current state 
+	  of the actual infrastructure (aws) with the existing state file and the predicts what 
+	  changes need to be applied to cloud.
+	
+	Types of state in terraform 
+		- local 
+			we can keep state file locally in the same machine from where we execute the terraform
+			code.
+		
+		- Remote 
+			
